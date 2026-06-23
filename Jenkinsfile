@@ -9,6 +9,10 @@ pipeline {
         stage('Compile & Build') {
             steps {
                 sh './gradlew compileJava'
+
+                sh 'chmod +x gradlew'
+        
+                sh './gradlew compileJava'
             }
         }
         
