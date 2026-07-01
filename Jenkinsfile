@@ -8,9 +8,7 @@ pipeline {
     stages {
         stage('Compile & Build') {
             steps {
-                sh 'chmod +x gradlew'
-        
-                sh './gradlew compileJava'
+                gradleBuild()
             }
         }
         
@@ -19,7 +17,7 @@ pipeline {
             parallel {
                 stage('Unit Testing') {
                     steps {
-                        sh './gradlew test'
+                        gradleTest()
                     }
                 }
                 stage('Static Code Analysis') {
@@ -27,6 +25,7 @@ pipeline {
                         // Contoh jika menggunakan Checkstyle / SonarQube / PMD
                         echo "Menjalankan analisis kualitas kode..."
                         // sh './gradlew checkstyleMain'
+                        sh 'sleep 10'
                     }
                 }
             }
